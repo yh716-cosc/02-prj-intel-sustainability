@@ -1,1 +1,43 @@
 /* Add your CSS here */
+
+/* Add a blue background to the header section */
+header {
+  background-color: #0071c5; /* Intel blue */
+  color: white; /* Make text easy to read on blue */
+  padding: 30px 0; /* Add some space above and below */
+}
+/* Style the header to place logo and text side by side */
+.header-content {
+  display: flex; /* Place children in a row */
+  align-items: center; /* Vertically center items */
+  gap: 2em; /* Space between logo and text */
+  /* Add some padding for better appearance */
+  padding: 1em;
+}
+
+/* Optional: Make sure the text doesn't get too wide */
+.header-text {
+  max-width: 30em;
+}
+
+.timeline-card {
+  background: #fff;
+  border: 2px solid #cabde1;
+  border-radius: 12px;
+  padding: 1.2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 180px;
+  max-width: 220px;
+  width: 220px; /* Ensures all song boxes have the same width */
+  box-shadow: 0 2px 8px rgba(88, 76, 106, 0.08);
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+
+
