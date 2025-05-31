@@ -1,8 +1,10 @@
 /* Add your CSS here */
 
+
 /* Add a blue background to the header section */
 
 body {
+  margin: 0; /* Remove default margin from the body */
   background-color: #efefef;
   background-image: radial-gradient(circle, rgba(115, 141, 170, 0.315) 3px, transparent 2px);
   background-size: 40px 40px;
@@ -10,17 +12,25 @@ body {
 }
 
 header {
-  background-color: #0071c5; /* Intel blue */
-  color: white; /* Make text easy to read on blue */
-  padding: 30px 20px; /* Add some space above and below */
+  background: #1C6EA4;
+  background: -moz-linear-gradient(top, #1C6EA4 0%, #2388CB 50%, #144E75 100%);
+  background: -webkit-linear-gradient(top, #1C6EA4 0%, #2388CB 50%, #144E75 100%);
+  background: linear-gradient(to bottom, #1C6EA4 0%, #2388CB 50%, #144E75 100%);
+    padding: 30px 20px; /* Add some space above and below */
+}
+header h1{
+    color: white; /* Make text easy to read on blue */
+}
+header p{
+  color: #c7daea;
 }
 /* Style the header to place logo and text side by side */
 .header-content {
-  display: flex; /* Place children in a row */
-  align-items: center; /* Vertically center items */
-  gap: 2em; /* Space between logo and text */
-  /* Add some padding for better appearance */
-  padding: 1em;
+  display: flex;           /* Place children in a row */
+  align-items: center;     /* Vertically center items */
+  gap: 2em;                /* Space between logo and text */
+  padding: 1em;            /* Add some padding for better appearance */
+  justify-content: center; /* Center the whole group horizontally */
 }
 
 /* Optional: Make sure the text doesn't get too wide */
@@ -29,29 +39,31 @@ header {
 }
 /* Make the timeline cards display in a horizontal row and wrap to the next line if needed */
 section {
-  display: flex;              /* Place timeline cards in a row */
-  flex-wrap: wrap;            /* Move cards to the next line if they don't fit */
-  justify-content: center;    /* Center the cards horizontally */
-  gap: 4em;                 /* Space between cards */
-  padding: 4em 0;             /* Add some space above and below the section */
-  margin-left: 2em;           /* Add space on the left */
-  margin-right: 2em;          /* Add space on the right */
+  display: flex;                  /* Place cards in a row */
+  flex-wrap: nowrap;              /* Keep all cards in one row */
+  overflow-x: auto;               /* Allow horizontal scrolling */
+  scroll-snap-type: x mandatory;  /* Snap to cards when scrolling */
+  gap: 2em;                       /* Space between cards */
+  padding: 5em 5em;
+  margin-left: 5em;
+  margin-right: 5em;
 }
 .timeline-card {
   background: #fff;
-  border: 2px solid #0071c5;
+  border: 2px solid #2378b1;
   border-radius: 12px;
   padding: 1rem 1.5rem;      /* More even padding for a square look */
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 260px;            /* Increase minimum width */
-  max-width: 300px;            /* Increase maximum width */
-  width: 280px;                /* Make the card wider */
-  height: 280px;               /* Add a fixed height for a more square shape */
+  min-width: 330px;            /* Increase minimum width */
+  max-width: 370px;            /* Increase maximum width */
+  width: 350px;                /* Make the card wider */
+  height: 350px;               /* Add a fixed height for a more square shape */
   box-shadow: 0 2px 8px rgba(88, 76, 106, 0.08);
   box-sizing: border-box;
   position: relative;          /* Needed for absolute positioning of the paragraph */
+  scroll-snap-align: start;       /* Each card will snap to the start of the scroll area */
 }
 
 /* Make all h2 elements bigger for the timeline cards */
@@ -84,6 +96,11 @@ section {
   font-size: 1.2em;    /* Increase the font size for better readability */
 }
 
+.timeline-card:hover{
+  transform: scale(1.05,1.05); /* Slightly enlarge the card on hover */
+  transition: transform 0.3s ease; /* Smooth transition for the scale effect */
+}
+
 /* Show the paragraph when the user hovers over the card */
 .timeline-card:hover p {
   display: flex;           /* Show and center the paragraph on hover */
@@ -97,7 +114,7 @@ section {
 /* Make the first four images in the timeline cards 250px wide and 100px tall */
 .timeline-card img {
   width: 250px;   /* Set the width */
-  height: 100px;  /* Set the height */
+  height: 200px;  /* Set the height */
   object-fit: cover; /* Make sure the image fills the area */
 }
 
@@ -106,11 +123,27 @@ body {
 }
 
 footer{
-  background-color: #0071c5; /* Intel blue */
+  background-color: #1C6EA4; /* Intel blue */
   color: white; /* Make text easy to read on blue */
-  padding: 10px 0; /* Add some space above and below */
+  padding: 8px 0; /* Add some space above and below */
   text-align: center; /* Center the footer text */
   font-size: 1em;
+}
+
+/* Make the timeline cards stack vertically on small screens */
+@media (max-width: 700px) {
+  section {
+    flex-direction: column;   /* Stack cards vertically */
+    flex-wrap: nowrap;        /* No wrapping needed for column */
+    align-items: center;      /* Center cards horizontally */
+    overflow-x: visible;      /* No horizontal scroll needed */
+    gap: 2em;                 /* Space between cards */
+  }
+  .timeline-card {
+    width: 90vw;              /* Make cards take most of the screen width */
+    max-width: 400px;         /* Limit max width for readability */
+    min-width: 0;             /* Allow shrinking */
+  }
 }
 
 
