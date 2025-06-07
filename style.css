@@ -5,11 +5,10 @@
 
 body {
   margin: 0; /* Remove default margin from the body */
-  font-family: 'Roboto', Arial, sans-serif; /* Use a clean, readable font */
   background-color: #efefef;
-  /*background-image: radial-gradient(circle, rgba(115, 141, 170, 0.315) 3px, transparent 2px);
+  background-image: radial-gradient(circle, rgba(115, 141, 170, 0.315) 3px, transparent 2px);
   background-size: 40px 40px;
-  background-repeat: repeat;*/
+  background-repeat: repeat;
 }
 
 header {
@@ -17,162 +16,133 @@ header {
   background: -moz-linear-gradient(top, #1C6EA4 0%, #2388CB 50%, #144E75 100%);
   background: -webkit-linear-gradient(top, #1C6EA4 0%, #2388CB 50%, #144E75 100%);
   background: linear-gradient(to bottom, #1C6EA4 0%, #2388CB 50%, #144E75 100%);
-  padding: 2rem 0; /* Use rem for spacing */
+    padding: 30px 20px; /* Add some space above and below */
 }
-
-/* Center header content using Bootstrap's grid utility classes in your HTML:
-   <div class="container">
-     <div class="row justify-content-center">
-       <div class="col-auto header-content"> ... </div>
-     </div>
-   </div>
-   This will center the header content horizontally.
-*/
-
+header h1{
+    color: white; /* Make text easy to read on blue */
+}
+header p{
+  color: #c7daea;
+}
+/* Style the header to place logo and text side by side */
 .header-content {
   display: flex;           /* Place children in a row */
   align-items: center;     /* Vertically center items */
   gap: 2em;                /* Space between logo and text */
-  padding: 1em;
+  padding: 1em;            /* Add some padding for better appearance */
   justify-content: center; /* Center the whole group horizontally */
 }
 
+/* Optional: Make sure the text doesn't get too wide */
 .header-text {
   max-width: 30em;
 }
-
-header h1 {
-  color: white;
-  font-weight: 700;
-  font-size: 2.2rem;
-  margin-bottom: 0.5rem;
-}
-
-header p {
-  color: #c7daea;
-  font-size: 1.1rem;
-}
-
-/* Use Bootstrap's spacing utilities for section padding in your HTML:
-   <section class="px-5 py-5 mx-5">
-   This adds padding and margin using Bootstrap's grid system.
-*/
+/* Make the timeline cards display in a horizontal row and wrap to the next line if needed */
 section {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 2em;
-  padding: 0; /* Let Bootstrap's classes handle padding */
-  margin: 0;  /* Let Bootstrap's classes handle margin */
+  display: flex;                  /* Place cards in a row */
+  flex-wrap: nowrap;              /* Keep all cards in one row */
+  overflow-x: auto;               /* Allow horizontal scrolling */
+  scroll-snap-type: x mandatory;  /* Snap to cards when scrolling */
+  gap: 2em;                       /* Space between cards */
+  padding: 5em 5em;
+  margin-left: 5em;
+  margin-right: 5em;
 }
-
 .timeline-card {
   background: #fff;
   border: 2px solid #2378b1;
   border-radius: 12px;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.5rem;      /* More even padding for a square look */
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 330px;
-  max-width: 370px;
-  width: 350px;
-  height: 350px;
+  min-width: 330px;            /* Increase minimum width */
+  max-width: 370px;            /* Increase maximum width */
+  width: 350px;                /* Make the card wider */
+  height: 350px;               /* Add a fixed height for a more square shape */
   box-shadow: 0 2px 8px rgba(88, 76, 106, 0.08);
   box-sizing: border-box;
-  position: relative;
-  scroll-snap-align: start;
-  margin: 1rem; /* Add margin between cards for spacing */
+  position: relative;          /* Needed for absolute positioning of the paragraph */
+  scroll-snap-align: start;       /* Each card will snap to the start of the scroll area */
 }
 
+/* Make all h2 elements bigger for the timeline cards */
 .timeline-card h2 {
   color: #045492;
-  font-size: 2.5em;
-  margin: 0.2em 0 0 0;
-  line-height: 1;
-  font-weight: 700;
+  font-size: 2.5em;      /* Make the year text larger */
+  margin: 0.2em 0 0 0; /* more space above, a little below for tight spacing */
+  line-height: 1;        /* Tighter lines */
 }
 
+
+
+/* Hide the paragraph inside each timeline card by default */
 .timeline-card p {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(240, 243, 255, 0.95);
-  color: #222;
-  padding: 0.5em;
-  border-radius: 12px;
-  box-sizing: border-box;
-  z-index: 1;
-  text-align: left;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2em;
+  display: none;           /* Hide the paragraph by default */
+  position: absolute;      /* Position it over the card */
+  top: -1em;                  /* Start at the very top of the card */
+  left: 0;                 /* Start at the very left of the card */
+  width: 100%;             /* Make it as wide as the card */
+  height: 100%;            /* Make it as tall as the card */
+  background: rgba(240, 243, 255, 0.95); /* Light background */
+  color: #222;             /* Dark text for readability */
+  padding: 0.5em;              /* Remove extra space so it aligns perfectly */
+  border-radius: 12px;     /* Match the card's rounded corners */
+  box-sizing: border-box;  /* Include border and padding in width/height */
+  z-index: 1;              /* Make sure it appears above other content */
+  text-align: center;      /* Center the text */
+  align-items: center;     /* Center vertically (for flex) */
+  justify-content: center; /* Center horizontally (for flex) */
+  font-size: 1.2em;    /* Increase the font size for better readability */
 }
 
+.timeline-card:hover{
+  transform: scale(1.05,1.05); /* Slightly enlarge the card on hover */
+  transition: transform 0.3s ease; /* Smooth transition for the scale effect */
+}
+
+/* Show the paragraph when the user hovers over the card */
 .timeline-card:hover p {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 24px rgba(54, 65, 134, 0.623);
+  display: flex;           /* Show and center the paragraph on hover */
+  align-items: center;     /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  box-shadow: 0 4px 24px rgba(54, 65, 134, 0.623); /* Add a soft shadow effect */
 }
 
-.timeline-card:hover {
-  transform: scale(1.05,1.05);
-  transition: transform 0.3s ease;
-}
 
+
+/* Make the first four images in the timeline cards 250px wide and 100px tall */
 .timeline-card img {
-  width: 250px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 0.5rem;
-  margin-bottom: 0.5rem;
+  width: 250px;   /* Set the width */
+  height: 200px;  /* Set the height */
+  object-fit: cover; /* Make sure the image fills the area */
 }
 
-footer {
-  background-color: #1C6EA4;
-  color: white;
-  padding: 8px 0;
-  text-align: center;
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+footer{
+  background-color: #1C6EA4; /* Intel blue */
+  color: white; /* Make text easy to read on blue */
+  padding: 8px 0; /* Add some space above and below */
+  text-align: center; /* Center the footer text */
   font-size: 1em;
 }
 
-/* Responsive: stack timeline cards vertically on small screens */
+/* Make the timeline cards stack vertically on small screens */
 @media (max-width: 700px) {
   section {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    overflow-x: visible;
-    gap: 2em;
-    padding: 0;
-    margin: 0;
+    flex-direction: column;   /* Stack cards vertically */
+    flex-wrap: nowrap;        /* No wrapping needed for column */
+    align-items: center;      /* Center cards horizontally */
+    overflow-x: visible;      /* No horizontal scroll needed */
+    gap: 2em;                 /* Space between cards */
   }
   .timeline-card {
-    width: 90vw;
-    max-width: 400px;
-    min-width: 0;
-    height: auto;
+    width: 90vw;              /* Make cards take most of the screen width */
+    max-width: 400px;         /* Limit max width for readability */
+    min-width: 0;             /* Allow shrinking */
   }
 }
-
-/* RTL support for translated pages */
-.translated-rtl {
-  direction: rtl;
-  text-align: right;
-}
-.translated-rtl .header-content {
-  flex-direction: row-reverse;
-}
-.translated-rtl section {
-  flex-direction: row-reverse;
-}
-.translated-rtl .timeline-card p {
-  text-align: right;
-}
-
 
